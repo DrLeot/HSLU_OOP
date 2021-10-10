@@ -1,16 +1,14 @@
-package com.company;
-
-public class Temperatur {
+public class Temperature {
     final float CELSIUS_OFFSET = (float) 273.15;
     private float tempcelsius;
 
     /***
      * Constructor. Sets the temperature in celsius
      */
-    public Temperatur(){
+    public Temperature(){
         this.tempcelsius = 20;
     }
-    public Temperatur(final float tempvalue){
+    public Temperature(final float tempvalue){
         this.tempcelsius = tempvalue;
     }
 
