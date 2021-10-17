@@ -4,26 +4,48 @@ import java.util.List;
 public class Numbers {
 
     public String Converttoroman(int number){
-        StringBuilder ret = new StringBuilder();
-        // add thousanders
-        while(number >= 1000){
-            ret.append("M");
-            number -= 1000;
-        }
-        if(number >= 500){
-            ret.append("D");
-            number -= 500;
-        }
-        if(number >= 400){
-            ret.append("CD"); // romans write CD instead of CCCC
-            number -= 400;
-        }
-        while (number >= 100){
-            ret.append("C");
-            number -= 100;
+        String ret = "";
+        final int[] conversionListNumbers = {
+                1000,
+                900,
+                500,
+                400,
+                100,
+                90,
+                50,
+                40,
+                10,
+                9,
+                5,
+                4,
+                1
+        };
+        final String[] conversionListletters = {
+                "M",
+                "CM",
+                "D",
+                "CD",
+                "C",
+                "XC",
+                "L",
+                "XL",
+                "X",
+                "IX",
+                "V",
+                "IV",
+                "I"
+        };
+
+        int index = 0;
+        while(number > 0){
+            while(number >= conversionListNumbers[index]){
+                ret += conversionListletters[index];
+                number -= conversionListNumbers[index];
+            }
+            index += 1;
         }
 
-        return ret.toString();
+        return ret;
     }
 
     public int max(int a, int b){

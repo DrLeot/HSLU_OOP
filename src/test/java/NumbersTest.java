@@ -13,6 +13,18 @@ class NumbersTest {
     }
 
     @Test
+    public void TestRoman(){
+        assertEquals("I",Numbers.Converttoroman(1));
+        assertEquals("II",Numbers.Converttoroman(2));
+        assertEquals("IV",Numbers.Converttoroman(4));
+        assertEquals("VIII",Numbers.Converttoroman(8));
+        assertEquals("XVI",Numbers.Converttoroman(16));
+        assertEquals("XXXII",Numbers.Converttoroman(32));
+        assertEquals("MXXIV",Numbers.Converttoroman(1024));
+        assertEquals("MMXLVIII",Numbers.Converttoroman(2048));
+    }
+
+    @Test
     public void testsimplemax(){
         assertEquals(10,Numbers.max(1,10),"should be 10");
         assertEquals(10, Numbers.max(1,5,10), "should be 10");
