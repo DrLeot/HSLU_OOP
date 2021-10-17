@@ -2,6 +2,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {
+
+    public String Converttoroman(int number){
+        StringBuilder ret = new StringBuilder();
+        // add thousanders
+        while(number >= 1000){
+            ret.append("M");
+            number -= 1000;
+        }
+        if(number >= 500){
+            ret.append("D");
+            number -= 500;
+        }
+        if(number >= 400){
+            ret.append("CD"); // romans write CD instead of CCCC
+            number -= 400;
+        }
+        while (number >= 100){
+            ret.append("C");
+            number -= 100;
+        }
+
+        return ret.toString();
+    }
+
     public int max(int a, int b){
         if(a >= b){
             return a;
