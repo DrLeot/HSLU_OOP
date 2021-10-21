@@ -13,6 +13,16 @@ class NumbersTest {
     }
 
     @Test
+    public void TestRoman2Int(){
+        assertEquals(4,Numbers.romandtointeger("IV"),"should be 4");
+        assertEquals(5000,Numbers.romandtointeger("MMMMM"),"should be 5000");
+        assertEquals(2008,Numbers.romandtointeger("MMVIII"),"should be 2008");
+        assertEquals(99,Numbers.romandtointeger("XCIX"),"should be 99");
+        assertEquals(47,Numbers.romandtointeger("XLVII"),"should be 47");
+        assertEquals(1990,Numbers.romandtointeger("MCMXC"),"should be 1990");
+    }
+
+    @Test
     public void TestRoman(){
         assertEquals("I",Numbers.Converttoroman(1));
         assertEquals("II",Numbers.Converttoroman(2));

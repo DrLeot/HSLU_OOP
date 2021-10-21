@@ -1,7 +1,34 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Numbers {
+
+    public int romandtointeger(String romannumber){
+        int ret = 0;
+        LinkedHashMap<Integer, String> romanlist = new LinkedHashMap<>();
+        romanlist.put(900,"CM");
+        romanlist.put(1000,"M");
+        romanlist.put(400,"CD");
+        romanlist.put(500,"D");
+        romanlist.put(90,"XC");
+        romanlist.put(100,"C");
+        romanlist.put(40,"XL");
+        romanlist.put(50,"L");
+        romanlist.put(9,"IX");
+        romanlist.put(10,"X");
+        romanlist.put(4,"IV");
+        romanlist.put(5,"V");
+        romanlist.put(1,"I");
+
+
+        for(Map.Entry<Integer, String> roman : romanlist.entrySet()){
+            while(romannumber.contains(roman.getValue())){
+                ret += roman.getKey();
+                romannumber = romannumber.substring(roman.getValue().length());
+            }
+        }
+        return ret;
+
+    }
 
     public String Converttoroman(int number){
         String ret = "";
