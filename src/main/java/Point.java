@@ -6,7 +6,21 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-
+    public Point(Point point){
+        this(point.x, point.y);
+    }
+    public void moveRelativePolar(double a, int r){
+        // this.x =
+        // this.y =
+    }
+    public void moveRelative(int x, int y){
+        this.x += x;
+        this.y = this.y + y;
+    }
+    public void moveRelative(Point point){
+        this.x += point.x;
+        this.y += point.y;
+    }
     public int getX() {
         return x;
     }

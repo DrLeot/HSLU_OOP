@@ -10,6 +10,7 @@ class ShapesTest {
 
     @BeforeEach
     public void setUp(){
+
         circle = new Circle(10,10,5);
         square = new Square(10,10,7);
         rect = new Rectangle(5,5,7,8);
@@ -17,7 +18,7 @@ class ShapesTest {
 
     @Test
     public void testAreas(){
-        assertEquals(19,circle.getArea());
+        assertEquals(12,circle.getArea());
         assertEquals(49,square.getArea());
         assertEquals(56,rect.getArea());
     }
