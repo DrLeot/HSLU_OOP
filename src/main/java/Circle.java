@@ -23,4 +23,9 @@ public class Circle extends Shape{
     public void setDiameter(int diameter) {
         this.diameter = diameter;
     }
+
+    @Override
+    public String toString(){
+        return "Durchmesser: "+diameter;
+    }
 }

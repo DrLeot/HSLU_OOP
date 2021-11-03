@@ -42,6 +42,10 @@ class PersonTest {
     public void testHashCode(){
         assertTrue(persons.get(0).hashCode() == persons.get(1).hashCode());
     }
+    @Test
+    public void testCompareTo(){
+        assertTrue(persons.get(0).compareTo(persons.get(1)) == 0);
+    }
 
 
 }
