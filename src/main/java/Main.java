@@ -28,7 +28,7 @@ public class Main {
         // calls the tiny sortbyFirstname Class which lets us sort by firstname
         // this is useful when you have multiple sorting method to provide and we can only implement 1 compareTo() method..
         Collections.sort(Persons, new PersonSortbyFirstname());
-        System.out.println(Persons); // unsorted
+        System.out.println(Persons); // sorted by first name
 
     }
 }
