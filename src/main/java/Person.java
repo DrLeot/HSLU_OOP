@@ -57,6 +57,12 @@ public class Person implements Comparable<Person>{
         return Objects.hash(this.ID,this.firstName,this.lastName);
     }
 
+    /**
+     * Compares this peson with the parameter person
+     * @param person person to compare the ID with
+     * @return 0 means equals value, -1 less than, 1 greater than
+     *
+     */
     @Override
     public int compareTo(Person person) {
         return Long.compare(this.ID,person.getUUID());
