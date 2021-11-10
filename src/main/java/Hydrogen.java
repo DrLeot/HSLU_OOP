@@ -1,6 +1,9 @@
-public class Hydrogen extends Element2{
-    public Hydrogen(String name, int numberOfProtons, String symbole) {
-        super(name, numberOfProtons, symbole);
+public class Hydrogen extends Element {
+    public Hydrogen(String name, int numberOfProtons, String symbole,
+                    Temperature temperature, Temperature boilingtemperature, Temperature meltingtemperature) {
+
+        super(name, numberOfProtons, symbole,
+                temperature, boilingtemperature, meltingtemperature);
     }
 
     @Override

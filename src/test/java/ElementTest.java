@@ -1,33 +1,45 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ElementTest {
-    public Element nitrogen;
-    public Element mercury;
-    public Element lead;
 
-    @BeforeEach
-    public void setup(){
-        nitrogen = new Element("N", -210,-196);
-        mercury = new Element("Hg", -38.83f,357);
-        lead = new Element("Pb", 327.43f,1744);
-    }
-    @Test
-    public void testgas(){
-        lead.setTempcelsius(1750);
-        assertEquals("Gasförmig",lead.getAggregate());
-    }
 
     @Test
-    public void testfluid(){
-        mercury.setTempcelsius(0);
-        assertEquals("Flüssig",mercury.getAggregate());
+    public void testHydrogenliquid(){
+        Hydrogen hydro = new Hydrogen("Wasserstoff",1,"H",
+                new Temperature(100), // current temp
+                new Temperature(120), // boiling
+                new Temperature(60)); // melting
+
+        assertEquals(Aggregationstates.LIQUID,hydro.getAggregate());
     }
     @Test
-    public void testsolid(){
-        nitrogen.setTempcelsius(-220);
-        assertEquals("Fest",nitrogen.getAggregate());
+    public void testHydrogengas(){
+        Hydrogen hydro = new Hydrogen("Wasserstoff",1,"H",
+                new Temperature(130), // current temp
+                new Temperature(120), // boiling
+                new Temperature(60)); // melting
+
+        assertEquals(Aggregationstates.GAS,hydro.getAggregate());
     }
+    @Test
+    public void testHydrogensolid(){
+        Hydrogen hydro = new Hydrogen("Wasserstoff",1,"H",
+                new Temperature(10), // current temp
+                new Temperature(120), // boiling
+                new Temperature(60)); // melting
+
+        assertEquals(Aggregationstates.SOLID,hydro.getAggregate());
+    }
+    @Test
+    public void testToStringSolid(){
+        Oxygen oxygen = new Oxygen("Wasserstoff",1,"H",
+                new Temperature(10), // current temp
+                new Temperature(120), // boiling
+                new Temperature(60)); // melting
+
+        assertEquals("Wasserstoff ist bei -263.15 Grad Fest",oxygen.toString());
+    }
+
 }

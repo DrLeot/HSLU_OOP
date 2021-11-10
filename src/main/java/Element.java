@@ -1,21 +1,65 @@
-public class Element extends Temperature {
-    private String name;
-    private float temperatureFluid;
-    private float temperatureGas;
+public abstract class Element {
 
-    public Element(String name, float temperatureFluid, float temperatureGas){
-        super(); // Super-constructor
-        this.temperatureFluid = temperatureFluid;
-        this.temperatureGas = temperatureGas;
+
+    private final String name;
+    private final String symbole;
+    private int numberOfProtons;
+    private Temperature temperature;
+    public Temperature boilingTemperature;
+    public Temperature meltingTemperature;
+
+
+    public Element(String name, int numberOfProtons, String symbole, Temperature temperature,
+                   Temperature boilingTemperature, Temperature meltingTemperature) {
+
+        this.name = name;
+        this.numberOfProtons = numberOfProtons;
+        this.symbole = symbole;
+        this.temperature = temperature;
+        this.boilingTemperature = boilingTemperature;
+        this.meltingTemperature = meltingTemperature;
     }
 
-    public String getAggregate(){
-        if(super.getTempcelsius() >= temperatureGas){
-            return "Gasförmig";
+    public Aggregationstates getAggregate() {
+        if (temperature.getCelsius() >= boilingTemperature.getCelsius()) {
+            return Aggregationstates.GAS;
+        } else if (temperature.getCelsius() >= meltingTemperature.getCelsius()) {
+            return Aggregationstates.LIQUID;
         }
-        if(super.getTempcelsius() <= temperatureFluid){
-            return "Fest";
-        }
-        return "Flüssig";
+        return Aggregationstates.SOLID;
     }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumberOfProtons() {
+        return numberOfProtons;
+    }
+
+    public String getSymbole() {
+        return symbole;
+    }
+
+    public abstract String light();
+
+    @Override
+    public String toString() {
+        // OLD WAY
+        /*switch (getAggregate()){
+            case GAS:
+                text += " gasförmig";
+                break;
+            case SOLID:
+                text += " fest";
+                break;
+            case LIQUID:
+                text += " flüssig";
+                break;
+        }*/
+        // NEW WAY
+        return getName() + " ist bei "+temperature.getCelsius()+" Grad "+getAggregate().getState();
+    }
+
 }
