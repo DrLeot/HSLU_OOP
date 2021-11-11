@@ -46,8 +46,7 @@ class TemperatureTest {
         Temperature b = new Temperature(a);
         Temperature c = new Temperature();
         Temperature d = null;
-        Person e = new Person(1234, "Hans","Hitler");
-
+        Person e = new Person(1234, "Hans","Gans");
 
         assertTrue(a.equals(b));
         assertTrue(b.equals(a));
