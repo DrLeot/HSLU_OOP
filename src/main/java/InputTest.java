@@ -1,8 +1,6 @@
 import java.util.Scanner;
-
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class InputTest {
@@ -10,7 +8,6 @@ public class InputTest {
     private static final Logger LOG = LogManager.getLogger(InputTest.class);
 
     public static void main(String[] args) {
-        BasicConfigurator.configure();
         LOG.debug("Startup of InputTest");
         String input;
         Scanner scanner = new Scanner(System.in);
