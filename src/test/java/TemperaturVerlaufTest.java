@@ -15,7 +15,7 @@ class TemperaturVerlaufTest {
 
     @Test
     public void addDuplicate(){
-        Temperature a = new Temperature();
+        Temperature a = Temperature.createFromDefault();
         temperaturVerlauf.add(a);
         assertTrue(temperaturVerlauf.add(a));
         assertEquals(2,temperaturVerlauf.getCount());
@@ -23,8 +23,8 @@ class TemperaturVerlaufTest {
 
     @Test
     public void addTemperature(){
-        Temperature a = new Temperature();
-        Temperature b = new Temperature(100);
+        Temperature a = Temperature.createFromDefault();
+        Temperature b = Temperature.createFromKelvin(100);
         assertTrue(temperaturVerlauf.add(a));
         assertTrue(temperaturVerlauf.add(b));
         assertEquals(2,temperaturVerlauf.getCount());
@@ -32,8 +32,8 @@ class TemperaturVerlaufTest {
 
     @Test
     public void testToString(){
-        Temperature a = new Temperature();
-        Temperature b = new Temperature(100);
+        Temperature a = Temperature.createFromDefault();
+        Temperature b = Temperature.createFromKelvin(100);
         assertTrue(temperaturVerlauf.add(a));
         assertTrue(temperaturVerlauf.add(b));
         assertTrue(temperaturVerlauf.toString().equals("20.0 K;100.0 K;"));
@@ -41,8 +41,8 @@ class TemperaturVerlaufTest {
 
     @Test
     public void testClear(){
-        Temperature a = new Temperature();
-        Temperature b = new Temperature(100);
+        Temperature a = Temperature.createFromDefault();
+        Temperature b = Temperature.createFromKelvin(100);
         assertTrue(temperaturVerlauf.add(a));
         assertTrue(temperaturVerlauf.add(b));
         assertEquals(2,temperaturVerlauf.getCount());
@@ -52,11 +52,11 @@ class TemperaturVerlaufTest {
 
     @Test
     public void testMaxObject(){
-        Temperature a = new Temperature(50);
-        Temperature b = new Temperature(45);
-        Temperature c = new Temperature(0);
-        Temperature d = new Temperature(70);
-        Temperature e = new Temperature(100);
+        Temperature a = Temperature.createFromKelvin(50);
+        Temperature b = Temperature.createFromKelvin(45);
+        Temperature c = Temperature.createFromKelvin(0);
+        Temperature d = Temperature.createFromKelvin(70);
+        Temperature e = Temperature.createFromKelvin(100);
         assertTrue(temperaturVerlauf.add(a));
         assertTrue(temperaturVerlauf.add(b));
         assertTrue(temperaturVerlauf.add(c));
@@ -70,11 +70,11 @@ class TemperaturVerlaufTest {
 
     @Test
     public void testMinObject(){
-        Temperature a = new Temperature(50);
-        Temperature b = new Temperature(45);
-        Temperature c = new Temperature(0);
-        Temperature d = new Temperature(70);
-        Temperature e = new Temperature(100);
+        Temperature a = Temperature.createFromKelvin(50);
+        Temperature b = Temperature.createFromKelvin(45);
+        Temperature c = Temperature.createFromKelvin(0);
+        Temperature d = Temperature.createFromKelvin(70);
+        Temperature e = Temperature.createFromKelvin(100);
         assertTrue(temperaturVerlauf.add(a));
         assertTrue(temperaturVerlauf.add(b));
         assertTrue(temperaturVerlauf.add(c));
@@ -88,8 +88,8 @@ class TemperaturVerlaufTest {
 
     @Test
     public void testSum(){
-        Temperature a = new Temperature(50);
-        Temperature b = new Temperature(45);
+        Temperature a = Temperature.createFromKelvin(50);
+        Temperature b = Temperature.createFromKelvin(45);
         temperaturVerlauf.add(a);
         temperaturVerlauf.add(b);
         assertEquals(95,temperaturVerlauf.getSumTemperatureValues());
@@ -97,8 +97,8 @@ class TemperaturVerlaufTest {
 
     @Test
     public void testAverage(){
-        Temperature a = new Temperature(50);
-        Temperature b = new Temperature(45);
+        Temperature a = Temperature.createFromKelvin(50);
+        Temperature b = Temperature.createFromKelvin(45);
         temperaturVerlauf.add(a);
         temperaturVerlauf.add(b);
 

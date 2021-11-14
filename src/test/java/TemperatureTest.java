@@ -9,12 +9,12 @@ class TemperatureTest {
 
     @BeforeEach
     public void setUp(){
-        temp1 = new Temperature(100);
+        temp1 = Temperature.createFromKelvin(100);
     }
 
     @Test
     public void testDefaultValue(){
-        assertEquals(20,new Temperature().getKelvin());
+        assertEquals(20,Temperature.createFromDefault().getKelvin());
     }
 
     @Test
@@ -24,10 +24,24 @@ class TemperatureTest {
 
     @Test
     public void testCopyTemperatureObject(){
-        Temperature a = new Temperature(50);
-        Temperature b = new Temperature(a);
+        Temperature a = Temperature.createFromKelvin(50);
+        Temperature b = Temperature.createFromTemperature(a);
 
         assertEquals(50,b.getKelvin());
+    }
+
+    @Test
+    public void testZeroKelvinException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Temperature.createFromKelvin(0);
+        });
+    }
+
+    @Test
+    public void testCelsusBelowMinimumException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Temperature.createFromCelsius(-300);
+        });
     }
 
     @Test
@@ -42,9 +56,9 @@ class TemperatureTest {
 
     @Test
     public void testEquals(){
-        Temperature a = new Temperature(50);
-        Temperature b = new Temperature(a);
-        Temperature c = new Temperature();
+        Temperature a = Temperature.createFromKelvin(50);
+        Temperature b = Temperature.createFromTemperature(a);
+        Temperature c = Temperature.createFromDefault();
         Temperature d = null;
         Person e = new Person(1234, "Hans","Gans");
 
@@ -59,9 +73,9 @@ class TemperatureTest {
 
     @Test
     public void testCompare(){
-        assertEquals(-1,new Temperature(50).compareTo(new Temperature(60)));
-        assertEquals(0,new Temperature(50).compareTo(new Temperature(50)));
-        assertEquals(1,new Temperature(60).compareTo(new Temperature(50)));
+        assertEquals(-1,Temperature.createFromKelvin(50).compareTo(Temperature.createFromKelvin(60)));
+        assertEquals(0,Temperature.createFromKelvin(50).compareTo(Temperature.createFromKelvin(50)));
+        assertEquals(1,Temperature.createFromKelvin(60).compareTo(Temperature.createFromKelvin(50)));
     }
 
 }

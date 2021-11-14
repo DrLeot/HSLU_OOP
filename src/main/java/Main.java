@@ -3,27 +3,18 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Person> Persons = new ArrayList<Person>();
-        Persons.add(new Person(1234,"Hans","Jucker"));
-        Persons.add(new Person(5678,"Hans","Maier"));
-        Persons.add(new Person(1111,"Lisa","Barmettler"));
+       Temperature a = null;
+       try {
+           a = Temperature.createFromKelvin(-10);
+       } catch (RuntimeException e) {
+           e.printStackTrace();
+       }
 
-        Person d = new Person(1111,"Lisa","Barmettler");
+       try {
+            a = Temperature.createFromCelsius(-273.15f);
+       } catch (RuntimeException e) {
+            e.printStackTrace();
+       }
 
-        for (Person person : Persons){
-            if(d.getUUID() == person.getUUID()){
-                System.out.println("Diese Person existiert bereits");
-                return;
-            }
-            Persons.add(d);
-            //person.compareTo(d);
-        }
-
-        /*Shape shape1 = new Circle(1,1,5);
-        Circle circl1 = new Circle(1,2,10);
-
-        Shape shape2 = new Rectangle(1,1,5,5);
-
-        System.out.println(((Circle) shape1).getDiameter());*/
     }
 }
