@@ -33,7 +33,7 @@ class TemperatureTest {
     @Test
     public void testZeroKelvinException(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Temperature.createFromKelvin(0);
+            Temperature.createFromKelvin(-10);
         });
     }
 
