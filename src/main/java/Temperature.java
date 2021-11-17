@@ -46,7 +46,7 @@ public final class Temperature implements Comparable<Temperature>{
             throw new IllegalArgumentException("Celsius cannot be less than minimum of -273.15");
         }
 
-        return new Temperature(celsius,Temperatureunits.KELVIN);
+        return new Temperature(celsius,Temperatureunits.CELSIUS);
     }
 
     public static Temperature createFromKelvin(final float kelvin) throws IllegalArgumentException{
