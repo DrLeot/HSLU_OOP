@@ -7,11 +7,20 @@ public class TemperaturVerlaufInput {
 
     private static final Logger LOG = LogManager.getLogger(TemperaturVerlaufInput.class);
 
+    private static class MinMaxValueListener
+            implements TemperatureValueListener {
+        @Override
+        public void MaxMinChange(TemperatureMaxEvent event) {
+            System.out.println("New "+ event.getType().getName() +" value entered");
+        }
+    }
+
     public static void main(String[] args) {
         LOG.debug("Startup of InputTest");
         String input;
         Scanner scanner = new Scanner(System.in);
         TemperaturVerlauf temperaturVerlauf = new TemperaturVerlauf();
+        temperaturVerlauf.addPropertyChangeListener(new TemperaturVerlaufInput.MinMaxValueListener());
 
         do {
             System.out.println("Bitte Temperatur eingeben ('exit' zum Beenden): ");
@@ -27,6 +36,7 @@ public class TemperaturVerlaufInput {
                 LOG.error(ex);
             }
         } while (!input.equals("exit"));
+        temperaturVerlauf.removeAllPropertyChangeListener(); // cleanup
         System.out.println("Programm wird beendet. Statistik:");
         System.out.println("Anzahl Werte:\t\t"+temperaturVerlauf.getCount());
         System.out.println("Durchschnitt:\t\t"+temperaturVerlauf.getAvgTemperatureValue());

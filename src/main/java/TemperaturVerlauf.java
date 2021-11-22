@@ -3,6 +3,7 @@ import java.util.*;
 public class TemperaturVerlauf {
 
     private List<Temperature> temperatures = new ArrayList<>();
+    private final List<TemperatureValueListener> minmaxListeners = new ArrayList<>();
 
     /***
      * adds a temperature to the list of temperatures
@@ -10,8 +11,32 @@ public class TemperaturVerlauf {
      * @return success yes(true)/no(false)
      */
     public boolean add(Temperature temperature){
-        return temperatures.add(temperature);
+        boolean success = temperatures.add(temperature);
+
+        if(getMaxTemperatureObject() == temperature){
+            this.fireMinMaxChangeEvent(new TemperatureMaxEvent(this, temperature, TemperatureMinMax.MAX));
+        }
+        if(getMinTemperatureObject() == temperature){
+            this.fireMinMaxChangeEvent(new TemperatureMaxEvent(this, temperature, TemperatureMinMax.MIN));
+        }
+
+        return success;
     }
+
+    public void addPropertyChangeListener(final TemperatureValueListener listener){
+        minmaxListeners.add(listener);
+    }
+
+    public void removeAllPropertyChangeListener(){
+        minmaxListeners.clear();
+    }
+
+    private void fireMinMaxChangeEvent(final TemperatureMaxEvent pcEvent){
+        for(final TemperatureValueListener listener : minmaxListeners){
+            listener.MaxMinChange(pcEvent);
+        }
+    }
+
 
     /***
      * removes a temperature object from the list of temperatures it is listed.
