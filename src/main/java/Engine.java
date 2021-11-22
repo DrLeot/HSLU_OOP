@@ -1,22 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Engine implements Switchable {
-    private boolean status = false;
+    private CarObjectState status = CarObjectState.OFF;
     private int rpm = 0;
+    private final List<PropertyChangeListener> changeListeners = new ArrayList<>();
 
     @Override
     public void switchOn() {
-        status = true;
+        status = CarObjectState.ON;
         setRpm(1000);
+
+        this.firePropertyChangeEvent(new PropertyChangeEvent(this,
+                "status", CarObjectState.OFF, CarObjectState.ON));
     }
 
     @Override
     public void switchOff() {
-        status = false;
+        status = CarObjectState.OFF;
         setRpm(0);
+
+        this.firePropertyChangeEvent(new PropertyChangeEvent(this,
+                "status", CarObjectState.ON, CarObjectState.OFF));
     }
 
     @Override
     public boolean isSwitchedOn() {
-        return status;
+        return status == CarObjectState.ON;
+    }
+
+    @Override
+    public String toString(){
+        return "Engine";
     }
 
     public int getRpm() {
@@ -24,9 +39,23 @@ public class Engine implements Switchable {
     }
 
     public void setRpm(int rpm){
-        if(rpm < 0 || rpm > 6500){
-            return;
+        if(rpm > 0){
+            this.rpm = rpm;
         }
-        this.rpm = rpm;
     }
+
+    public void addPropertyChangeListener(final PropertyChangeListener listener){
+        changeListeners.add(listener);
+    }
+
+    public void removePropertyChangeListener(final PropertyChangeListener listener){
+        changeListeners.remove(listener);
+    }
+
+    private void firePropertyChangeEvent(final PropertyChangeEvent pcEvent){
+        for(final PropertyChangeListener listener : changeListeners){
+            listener.propertyChange(pcEvent);
+        }
+    }
+
 }

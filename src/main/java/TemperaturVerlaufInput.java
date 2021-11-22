@@ -3,9 +3,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class InputTest {
+public class TemperaturVerlaufInput {
 
-    private static final Logger LOG = LogManager.getLogger(InputTest.class);
+    private static final Logger LOG = LogManager.getLogger(TemperaturVerlaufInput.class);
 
     public static void main(String[] args) {
         LOG.debug("Startup of InputTest");
@@ -27,8 +27,14 @@ public class InputTest {
                 LOG.error(ex);
             }
         } while (!input.equals("exit"));
+        System.out.println("Programm wird beendet. Statistik:");
+        System.out.println("Anzahl Werte:\t\t"+temperaturVerlauf.getCount());
+        System.out.println("Durchschnitt:\t\t"+temperaturVerlauf.getAvgTemperatureValue());
+        System.out.println("Min:\t\t"+temperaturVerlauf.getMinTemperatureObject());
+        System.out.println("Max:\t\t"+temperaturVerlauf.getMaxTemperatureObject());
+
+
         LOG.debug("Programm exited");
-        System.out.println("Programm beendet.");
     }
 
 }

@@ -42,12 +42,12 @@ public class TemperaturVerlauf {
      * Loops over all temperatures and sums their temperature.
      * @return Sum of all Temperatures in Kelvin
      */
-    public float getSumTemperatureValues(){
+    public Temperature getSumTemperatureValues(){
         float sum = 0f;
         for(Temperature temperature:temperatures){
             sum += temperature.getKelvin();
         }
-        return sum;
+        return Temperature.createFromKelvin(sum);
     }
 
     /***
@@ -63,8 +63,8 @@ public class TemperaturVerlauf {
      * Returns the average of all Temperatures listed in Arraylist temperatures.
      * @return Average value in Kelvin
      */
-    public float getAvgTemperatureValue(){
-        return getSumTemperatureValues()/getCount();
+    public Temperature getAvgTemperatureValue(){
+        return Temperature.createFromKelvin(getSumTemperatureValues().getKelvin()/getCount());
     }
 
     @Override
