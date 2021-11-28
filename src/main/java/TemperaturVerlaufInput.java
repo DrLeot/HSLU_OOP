@@ -28,7 +28,7 @@ public class TemperaturVerlaufInput {
             LOG.info("User entered: " + input);
             try{
                 float value = Float.valueOf(input);
-                temperaturVerlauf.add(Temperature.createFromKelvin(value));
+                temperaturVerlauf.add(new Measurement(Temperature.createFromKelvin(value)));
                 LOG.info("Converted to: " +temperaturVerlauf.toString());
             }catch (NumberFormatException ex){
                 LOG.error(ex);
@@ -39,7 +39,7 @@ public class TemperaturVerlaufInput {
         temperaturVerlauf.removeAllPropertyChangeListener(); // cleanup
         System.out.println("Programm wird beendet. Statistik:");
         System.out.println("Anzahl Werte:\t\t"+temperaturVerlauf.getCount());
-        System.out.println("Durchschnitt:\t\t"+temperaturVerlauf.getAvgTemperatureValue());
+        System.out.println("Durchschnitt:\t\t"+temperaturVerlauf.getAvgTemperatureObject());
         System.out.println("Min:\t\t"+temperaturVerlauf.getMinTemperatureObject());
         System.out.println("Max:\t\t"+temperaturVerlauf.getMaxTemperatureObject());
 

@@ -1,10 +1,15 @@
-import java.util.ArrayList;
+import java.io.*;
 
 public class Main {
+
+
     public static void main(String[] args) {
+        /*DataStreams datastream = new DataStreams("src\\main\\resources\\file.dat");
+        datastream.streamWrite();
+        datastream.streamRead();*/
 
-       Car myfancycar = new Car(CarBrands.BMW,Colors.BLUE);
-       myfancycar.switchOn();
-
+        TemperatureFileReader temperatureFileReader = new TemperatureFileReader();
+        temperatureFileReader.readFile("src\\main\\resources\\netatmo-export-201801-201804.csv");
+        temperatureFileReader.printStatistics();
     }
 }

@@ -1,7 +1,8 @@
 public enum Aggregationstates {
     GAS("Gasförmig"),
     LIQUID("Flüssig"),
-    SOLID("Fest");
+    SOLID("Fest"),
+    PLASMA("Plasma");
 
     private final String state;
 
