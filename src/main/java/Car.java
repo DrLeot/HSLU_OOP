@@ -1,3 +1,6 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Car implements Switchable{
     private Light frontLightLeft;
     private Light frontLightRight;
@@ -7,21 +10,7 @@ public class Car implements Switchable{
 
     private Colors color;
     private CarBrands brand;
-
-    private class MotorPropertyListener
-            implements PropertyChangeListener {
-        @Override
-        public void propertyChange(final PropertyChangeEvent event) {
-            System.out.println("A:" + event);
-        }
-    }
-    private class LightPropertyListener
-            implements PropertyChangeListener {
-        @Override
-        public void propertyChange(final PropertyChangeEvent event) {
-            System.out.println("B: "+event);
-        }
-    }
+    private static final Logger LOG = LogManager.getLogger(Car.class);
 
     public Car(CarBrands brand, Colors color){
         this.brand = brand;
@@ -33,11 +22,11 @@ public class Car implements Switchable{
         breakLightLeft = new Light();
         engine = new Engine();
 
-        engine.addPropertyChangeListener(new Car.MotorPropertyListener());
-        frontLightLeft.addPropertyChangeListener(new Car.LightPropertyListener());
-        frontLightRight.addPropertyChangeListener(new Car.LightPropertyListener());
-        breakLightRight.addPropertyChangeListener(new Car.LightPropertyListener());
-        breakLightLeft.addPropertyChangeListener(new Car.LightPropertyListener());
+        engine.addPropertyChangeListener(LOG::info);
+        frontLightLeft.addPropertyChangeListener(LOG::info);
+        frontLightRight.addPropertyChangeListener(LOG::info);
+        breakLightRight.addPropertyChangeListener(LOG::info);
+        breakLightLeft.addPropertyChangeListener(LOG::info);
 
     }
 

@@ -12,10 +12,6 @@ public class TemperatureMaxEvent extends EventObject{
 
     }
 
-    public Object getNewMax() {
-        return newMax;
-    }
-
     public TemperatureMinMax getType() {
         return type;
     }

@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TemperaturVerlauf {
 
@@ -33,9 +34,9 @@ public class TemperaturVerlauf {
     }
 
     private void fireMinMaxChangeEvent(final TemperatureMaxEvent pcEvent){
-        for(final TemperatureValueListener listener : minmaxListeners){
-            listener.MaxMinChange(pcEvent);
-        }
+        minmaxListeners.forEach(l -> {
+            l.MaxMinChange(pcEvent);
+        });
     }
 
 
@@ -69,11 +70,9 @@ public class TemperaturVerlauf {
      * @return Sum of all Temperatures in Kelvin
      */
     public Temperature getSumTemperatureValues(){
-        float sum = 0f;
-        for(Measurement temperature: measurements){
-            sum = sum + temperature.getTemperature().getKelvin();
-        }
-        return Temperature.createFromKelvin(sum);
+        return Temperature.createFromKelvin((float) measurements.stream()
+                .mapToDouble(t -> t.getTemperature().getKelvin())
+                .sum());
     }
 
     /***
@@ -87,10 +86,6 @@ public class TemperaturVerlauf {
 
     @Override
     public String toString(){
-        StringBuilder ret = new StringBuilder();
-        for (Measurement temp: measurements) {
-            ret.append(temp.toString()).append(";");
-        }
-        return ret.toString();
+        return measurements.stream().map(Measurement::toString).collect(Collectors.joining(";"));
     }
 }
